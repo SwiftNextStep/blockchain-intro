@@ -23,7 +23,7 @@ function Block() {
 
   return (
     <Container maxW='80%' mt='6'>
-      <Heading mb='10'>SHA256 Hash</Heading>
+      <Heading mb='10'>Block</Heading>
       <Box bg='green.100' padding='6' borderRadius='md'>
         <Text>Data:</Text>
         <Textarea bg='white' mb='2' onChange={updateData} />
