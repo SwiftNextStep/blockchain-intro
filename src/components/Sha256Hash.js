@@ -24,7 +24,7 @@ function Sha256Hash() {
   return (
     <>
       <Heading mb='10'>SHA256 Hash</Heading>
-      <Container>
+      <Container maxW='80%'>
         <Box bg='green.100' padding='6' borderRadius='md'>
           <Text>Data:</Text>
           <Textarea bg='white' mb='2' onChange={updateData} />
