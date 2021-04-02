@@ -31,7 +31,6 @@ function BlockchainBlock() {
   }
   return (
     <Container maxW='80%' mt='6' minW='500'>
-      <Heading mb='10'>Block</Heading>
       <Box bg={isValid ? 'green.100' : 'red.100'} padding='6' borderRadius='md'>
         <Text>Block Number:</Text>
         <Input
