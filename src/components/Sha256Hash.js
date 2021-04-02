@@ -5,13 +5,15 @@ import { Box } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/layout';
 import { Textarea } from '@chakra-ui/textarea';
-import React, { useEffect, useState, use } from 'react';
+import React, { useEffect, useState } from 'react';
+import { sha256Hash } from '../blockchain/util/hash';
 
 function Sha256Hash() {
   const [data, setData] = useState('');
   const [sha256, setSha256] = useState();
   useEffect(() => {
-    setSha256(data);
+    const hashedData = sha256Hash(data);
+    setSha256(hashedData);
   }, [data]);
 
   function updateData(e) {
