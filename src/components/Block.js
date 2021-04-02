@@ -6,6 +6,7 @@ import { Text } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/layout';
 import { Textarea } from '@chakra-ui/textarea';
 import React, { useEffect, useState } from 'react';
+import { mineBlock } from '../blockchain/block';
 import { DIFICULTY } from '../blockchain/util/constants';
 import { hashBlock, sha256Hash } from '../blockchain/util/hash';
 
@@ -22,7 +23,11 @@ function Block() {
     setIsValid(checkIsValid);
     setSha256(hashedData);
   }, [blockNumber, nonce, data]);
-
+  function handleMine() {
+    const { hashedData, nonce } = mineBlock({ blockNumber, data });
+    setNonce(nonce);
+    setSha256(hashedData);
+  }
   return (
     <Container maxW='80%' mt='6'>
       <Heading mb='10'>Block</Heading>
@@ -33,7 +38,7 @@ function Block() {
           mb='6'
           value={blockNumber}
           onChange={(e) => {
-            setBlockNumber(e.target.value);
+            setBlockNumber(Number(e.target.value));
           }}
         />
         <Text>nonce:</Text>
@@ -42,7 +47,7 @@ function Block() {
           mb='6'
           value={nonce}
           onChange={(e) => {
-            setNonce(e.target.value);
+            setNonce(Number(e.target.value));
           }}
         />
         <Text>Data:</Text>
@@ -55,7 +60,9 @@ function Block() {
         />
         <Text>Hash:</Text>
         <Input bg='white' mb='6' value={sha256} />
-        <Button colorScheme='blue'>Mine</Button>
+        <Button colorScheme='blue' onClick={handleMine}>
+          Mine
+        </Button>
       </Box>
     </Container>
   );

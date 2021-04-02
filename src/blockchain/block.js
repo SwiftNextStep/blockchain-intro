@@ -1,3 +1,4 @@
+import { DIFICULTY } from './util/constants';
 import { hashBlock } from './util/hash';
 
 export function mineBlock({ blockNumber, data }) {
