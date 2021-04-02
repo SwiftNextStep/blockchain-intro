@@ -8,21 +8,30 @@ function Blockchain() {
   const [chain, setChain] = useImmer([
     {
       blockNumber: 0,
-      nonce: 0,
-      data: {},
-      previousHash: '',
-      hash: '',
+      nonce: 2,
+      data: { test: 'my test data' },
+      previousHash: '111',
+      hash: '000',
     },
     {
-      blockNumber: 0,
-      nonce: 0,
+      blockNumber: 1,
+      nonce: 2,
       data: {},
-      previousHash: '',
-      hash: '',
+      previousHash: '123',
+      hash: '123',
     },
   ]);
+
+  function updateChainValue(blockNumber, fieldName, fieldValue) {
+    setChain((draft) => {
+      draft[blockNumber][fieldName] = fieldValue;
+    });
+  }
+
   function getBlockchainBlocks() {
-    return chain.map((block) => <BlockchainBlock />);
+    return chain.map((block) => (
+      <BlockchainBlock {...block} updateChainValue={updateChainValue} />
+    ));
   }
   return (
     <>
