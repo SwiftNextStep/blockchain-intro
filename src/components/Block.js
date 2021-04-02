@@ -6,7 +6,7 @@ import { Text } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/layout';
 import { Textarea } from '@chakra-ui/textarea';
 import React, { useEffect, useState } from 'react';
-import { sha256Hash } from '../blockchain/util/hash';
+import { hashBlock, sha256Hash } from '../blockchain/util/hash';
 
 function Block() {
   const [blockNumber, setBlockNumber] = useState(1);
@@ -14,9 +14,9 @@ function Block() {
   const [data, setData] = useState('');
   const [sha256, setSha256] = useState();
   useEffect(() => {
-    const hashedData = sha256Hash(data);
+    const hashedData = hashBlock({ blockNumber, nonce, data });
     setSha256(hashedData);
-  }, [data]);
+  }, [blockNumber, nonce, data]);
 
   return (
     <Container maxW='80%' mt='6'>
