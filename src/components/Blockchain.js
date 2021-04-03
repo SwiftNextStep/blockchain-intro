@@ -8,16 +8,23 @@ function Blockchain() {
   const [chain, setChain] = useImmer([
     {
       blockNumber: 0,
-      nonce: 2,
-      data: { test: 'my test data' },
-      previousHash: '111',
+      nonce: 2475,
+      data: 'Genesis Block',
+      previousHash: '0'.repeat(64),
       hash: '000',
     },
     {
       blockNumber: 1,
-      nonce: 2,
-      data: {},
-      previousHash: '123',
+      nonce: 137600,
+      data: 'Another block',
+      previousHash: '',
+      hash: '123',
+    },
+    {
+      blockNumber: 2,
+      nonce: 137600,
+      data: 'Final block',
+      previousHash: '',
       hash: '123',
     },
   ]);
@@ -29,9 +36,21 @@ function Blockchain() {
   }
 
   function getBlockchainBlocks() {
-    return chain.map((block) => (
-      <BlockchainBlock {...block} updateChainValue={updateChainValue} />
-    ));
+    return chain.map((block) => {
+      if (block.blockNumber === 0) {
+        return (
+          <BlockchainBlock {...block} updateChainValue={updateChainValue} />
+        );
+      }
+      const previousHashValue = chain[block.blockNumber - 1].hash;
+      return (
+        <BlockchainBlock
+          {...block}
+          previousHash={previousHashValue}
+          updateChainValue={updateChainValue}
+        />
+      );
+    });
   }
   return (
     <>

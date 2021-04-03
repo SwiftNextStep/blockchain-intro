@@ -52,6 +52,7 @@ function BlockchainBlock({
           onChange={(e) => {
             updateChainValue(blockNumber, 'data', e.target.value);
           }}
+          value={data}
         />
         <Text>Previous hash:</Text>
         <Input
