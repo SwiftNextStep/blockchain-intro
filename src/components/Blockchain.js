@@ -22,7 +22,7 @@ function Blockchain() {
     },
     {
       blockNumber: 2,
-      nonce: 137600,
+      nonce: 60683,
       data: 'Final block',
       previousHash: '',
       hash: '123',
