@@ -17,6 +17,7 @@ function BlockchainBlock({
   previousHash,
   hash,
   updateChainValue,
+  node,
 }) {
   const [isValid, setIsValid] = useState(false);
   useEffect(() => {

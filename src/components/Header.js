@@ -32,6 +32,7 @@ function Header() {
         <MenuItems link='/sha256'>SHA256</MenuItems>
         <MenuItems link='/block'>Block</MenuItems>
         <MenuItems link='/blockchain'>Blockchain</MenuItems>
+        <MenuItems link='/distributed'>Distributed</MenuItems>
       </Box>
     </Flex>
   );
