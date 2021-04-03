@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Block from './components/Block';
 import Blockchain from './components/Blockchain';
@@ -6,12 +7,20 @@ import Sha256Hash from './components/Sha256Hash';
 
 function App() {
   return (
-    <>
+    <Router>
       <Header />
-      <Sha256Hash />
-      <Block />
-      <Blockchain />
-    </>
+      <Switch>
+        <Route path='/sha256'>
+          <Sha256Hash />
+        </Route>
+        <Route path='/block'>
+          <Block />
+        </Route>
+        <Route path='/blockchain'>
+          <Blockchain />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
