@@ -8,21 +8,21 @@ function Blockchain() {
   const [chain, setChain] = useImmer([
     {
       blockNumber: 0,
-      nonce: 2475,
+      nonce: 19204,
       data: 'Genesis Block',
       previousHash: '0'.repeat(64),
       hash: '000',
     },
     {
       blockNumber: 1,
-      nonce: 137600,
+      nonce: 34402,
       data: 'Another block',
       previousHash: '',
       hash: '123',
     },
     {
       blockNumber: 2,
-      nonce: 60683,
+      nonce: 25790,
       data: 'Final block',
       previousHash: '',
       hash: '123',

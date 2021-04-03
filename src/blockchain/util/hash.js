@@ -6,8 +6,13 @@ export function sha256Hash(input) {
   return hash.digest('hex');
 }
 
-export function hashBlock({ blockNumber, nonce, data }) {
-  const blockString = JSON.stringify({ blockNumber, nonce, data });
+export function hashBlock({ blockNumber, nonce, data, previousHash }) {
+  const blockString = JSON.stringify({
+    blockNumber,
+    nonce,
+    data,
+    previousHash,
+  });
   const blockHash = sha256Hash(blockString);
   return blockHash;
 }

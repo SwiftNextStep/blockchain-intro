@@ -20,14 +20,18 @@ function BlockchainBlock({
 }) {
   const [isValid, setIsValid] = useState(false);
   useEffect(() => {
-    const hashedData = hashBlock({ blockNumber, nonce, data });
+    const hashedData = hashBlock({ blockNumber, nonce, data, previousHash });
     const checkIsValid =
       hashedData.substring(0, DIFICULTY) === '0'.repeat(DIFICULTY);
     setIsValid(checkIsValid);
     updateChainValue(blockNumber, 'hash', hashedData);
-  }, [blockNumber, nonce, data]);
+  }, [blockNumber, nonce, data, previousHash]);
   function handleMine() {
-    const { hashedData, nonce } = mineBlock({ blockNumber, data });
+    const { hashedData, nonce } = mineBlock({
+      blockNumber,
+      data,
+      previousHash,
+    });
     updateChainValue(blockNumber, 'nonce', nonce);
     updateChainValue(blockNumber, 'hash', hashedData);
   }
