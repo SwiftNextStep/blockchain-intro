@@ -1,13 +1,18 @@
 import { Heading } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/layout';
+import { Link } from '@chakra-ui/layout';
 import { Spacer } from '@chakra-ui/layout';
 import { Box } from '@chakra-ui/layout';
 import { Flex } from '@chakra-ui/layout';
 import React from 'react';
 
 function Header() {
-  function MenuItems({ children }) {
-    return <Text mr={6}>{children}</Text>;
+  function MenuItems({ children, link }) {
+    return (
+      <Text mr={6}>
+        <Link href={link}>{children}</Link>
+      </Text>
+    );
   }
   return (
     <Flex
@@ -24,9 +29,9 @@ function Header() {
       </Flex>
       <Spacer />
       <Box display='flex' alignItems='center'>
-        <MenuItems>SHA256</MenuItems>
-        <MenuItems>Block</MenuItems>
-        <MenuItems>Blockchain</MenuItems>
+        <MenuItems link='/sha256'>SHA256</MenuItems>
+        <MenuItems link='/block'>Block</MenuItems>
+        <MenuItems link='/blockchain'>Blockchain</MenuItems>
       </Box>
     </Flex>
   );
