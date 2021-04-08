@@ -8,7 +8,7 @@ import { Textarea } from '@chakra-ui/textarea';
 import React, { useEffect, useState } from 'react';
 import { sha256Hash } from '../blockchain/util/hash';
 
-function Block() {
+function Sha256Hash() {
   const [data, setData] = useState('');
   const [sha256, setSha256] = useState();
   useEffect(() => {
@@ -35,4 +35,4 @@ function Block() {
   );
 }
 
-export default Block;
+export default Sha256Hash;
