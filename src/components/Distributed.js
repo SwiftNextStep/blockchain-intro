@@ -85,6 +85,10 @@ function Distributed() {
       return acc;
     }, {});
     console.log(hashCount);
+    const validHash = Object.keys(hashCount).reduce((acc, value) =>
+      hashCount[acc] > hashCount[value] ? acc : value
+    );
+    console.log(validHash);
   }, [toggleChain]);
 
   function updateChainValue(blockNumber, fieldName, fieldValue, node) {
