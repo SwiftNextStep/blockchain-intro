@@ -107,9 +107,6 @@ function Distributed() {
   }
   return (
     <>
-      <Heading mb='10' mt='10'>
-        Blockchain
-      </Heading>
       {chain.map((blockchain, index) => {
         return (
           <Grid maxW='100%' overflowX='scroll' templateColumns='repeat(5, 1fr)'>
