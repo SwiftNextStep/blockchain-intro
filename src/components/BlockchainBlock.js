@@ -25,7 +25,7 @@ function BlockchainBlock({
     const checkIsValid =
       hashedData.substring(0, DIFICULTY) === '0'.repeat(DIFICULTY);
     setIsValid(checkIsValid);
-    updateChainValue(blockNumber, 'hash', hashedData);
+    updateChainValue(blockNumber, 'hash', hashedData, node);
   }, [blockNumber, nonce, data, previousHash]);
   function handleMine() {
     const { hashedData, nonce } = mineBlock({
@@ -33,11 +33,11 @@ function BlockchainBlock({
       data,
       previousHash,
     });
-    updateChainValue(blockNumber, 'nonce', nonce);
-    updateChainValue(blockNumber, 'hash', hashedData);
+    updateChainValue(blockNumber, 'nonce', nonce, node);
+    updateChainValue(blockNumber, 'hash', hashedData, node);
   }
   return (
-    <Container maxW='80%' mt='6' minW='500'>
+    <Container maxW='80%' my='6' minW='500'>
       <Box bg={isValid ? 'green.100' : 'red.100'} padding='6' borderRadius='md'>
         <Text>Block Number:</Text>
         <Input bg='white' mb='6' value={blockNumber} />
@@ -47,7 +47,7 @@ function BlockchainBlock({
           mb='6'
           value={nonce}
           onChange={(e) => {
-            updateChainValue(blockNumber, 'nonce', e.target.value);
+            updateChainValue(blockNumber, 'nonce', e.target.value, node);
           }}
         />
         <Text>Data:</Text>
@@ -55,7 +55,7 @@ function BlockchainBlock({
           bg='white'
           mb='2'
           onChange={(e) => {
-            updateChainValue(blockNumber, 'data', e.target.value);
+            updateChainValue(blockNumber, 'data', e.target.value, node);
           }}
           value={data}
         />
@@ -65,7 +65,7 @@ function BlockchainBlock({
           mb='6'
           value={previousHash}
           onChange={(e) => {
-            updateChainValue(blockNumber, 'previousHash', e.target.value);
+            updateChainValue(blockNumber, 'previousHash', e.target.value, node);
           }}
         />
         <Text>Hash:</Text>

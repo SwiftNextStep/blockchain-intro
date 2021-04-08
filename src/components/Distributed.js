@@ -1,6 +1,6 @@
 import { Heading } from '@chakra-ui/layout';
 import { Grid } from '@chakra-ui/layout';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import BlockchainBlock from './BlockchainBlock';
 
@@ -77,10 +77,18 @@ function Distributed() {
     ],
   ]);
 
-  function updateChainValue(blockNumber, fieldName, fieldValue) {
-    // setChain((draft) => {
-    //   draft[blockNumber][fieldName] = fieldValue;
-    // });
+  useEffect(() => {
+    var map = chain.reduce(function (acc, cur) {
+      acc[cur[2]['hash']] = (acc[cur[2]['hash']] || 0) + 1;
+      console.log('te');
+      return acc;
+    }, {});
+    console.log(map);
+  }, [chain]);
+  function updateChainValue(blockNumber, fieldName, fieldValue, node) {
+    setChain((draft) => {
+      draft[node][blockNumber][fieldName] = fieldValue;
+    });
   }
 
   function getBlockchainBlocks(blockchain, index) {
@@ -94,7 +102,7 @@ function Distributed() {
           />
         );
       }
-      const previousHashValue = chain[block.blockNumber - 1].hash;
+      const previousHashValue = chain[index][block.blockNumber - 1].hash;
       return (
         <BlockchainBlock
           {...block}
@@ -109,9 +117,16 @@ function Distributed() {
     <>
       {chain.map((blockchain, index) => {
         return (
-          <Grid maxW='100%' overflowX='scroll' templateColumns='repeat(5, 1fr)'>
-            {getBlockchainBlocks(blockchain, index)}
-          </Grid>
+          <>
+            <Heading my='5'>Node {index}</Heading>
+            <Grid
+              maxW='100%'
+              overflowX='scroll'
+              templateColumns='repeat(5, 1fr)'
+            >
+              {getBlockchainBlocks(blockchain, index)}
+            </Grid>
+          </>
         );
       })}
     </>
