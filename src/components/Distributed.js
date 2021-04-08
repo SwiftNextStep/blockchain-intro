@@ -1,10 +1,11 @@
 import { Heading } from '@chakra-ui/layout';
 import { Grid } from '@chakra-ui/layout';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
 import BlockchainBlock from './BlockchainBlock';
 
 function Distributed() {
+  const [toggleChain, setToggleChain] = useState(true);
   const [chain, setChain] = useImmer([
     [
       {
@@ -78,17 +79,25 @@ function Distributed() {
   ]);
 
   useEffect(() => {
-    var map = chain.reduce(function (acc, cur) {
-      acc[cur[2]['hash']] = (acc[cur[2]['hash']] || 0) + 1;
-      console.log('te');
+    const lastBlock = chain[0].length - 1;
+    var hashCount = chain.reduce((acc, cur) => {
+      acc[cur[lastBlock]['hash']] = (acc[cur[lastBlock]['hash']] || 0) + 1;
       return acc;
     }, {});
-    console.log(map);
-  }, [chain]);
+    console.log(hashCount);
+  }, [toggleChain]);
+
   function updateChainValue(blockNumber, fieldName, fieldValue, node) {
     setChain((draft) => {
       draft[node][blockNumber][fieldName] = fieldValue;
     });
+    if (fieldName === 'hash') {
+      //"1234...": 1;
+      //"2345...": 2
+      if (blockNumber === chain[node].length - 1) {
+        setToggleChain((c) => !c);
+      }
+    }
   }
 
   function getBlockchainBlocks(blockchain, index) {
