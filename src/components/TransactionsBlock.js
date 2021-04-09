@@ -53,6 +53,7 @@ function TransactionsBlock({
         />
         <Text>Transactions:</Text>
         <TransactionsList
+          transactions={data}
           updateData={updateChainValue}
           blockNumber={blockNumber}
         />
