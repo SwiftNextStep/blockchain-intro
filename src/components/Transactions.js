@@ -8,7 +8,7 @@ function Transactions() {
   const [chain, setChain] = useImmer([
     {
       blockNumber: 0,
-      nonce: 19204,
+      nonce: 13966,
       data: [
         {
           id: 0,
@@ -34,7 +34,7 @@ function Transactions() {
     },
     {
       blockNumber: 1,
-      nonce: 34402,
+      nonce: 161732,
       data: [
         {
           id: 0,
@@ -60,7 +60,7 @@ function Transactions() {
     },
     {
       blockNumber: 2,
-      nonce: 25790,
+      nonce: 7122,
       data: [
         {
           id: 0,
@@ -87,6 +87,13 @@ function Transactions() {
   ]);
 
   function updateChainValue(blockNumber, fieldName, fieldValue) {
+    if (
+      JSON.stringify(chain[blockNumber][fieldName]) ===
+      JSON.stringify(fieldValue)
+    ) {
+      console.log('Skip change');
+      return;
+    }
     setChain((draft) => {
       draft[blockNumber][fieldName] = fieldValue;
     });
