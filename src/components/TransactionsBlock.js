@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { mineBlock } from '../blockchain/block';
 import { DIFICULTY } from '../blockchain/util/constants';
 import { hashBlock } from '../blockchain/util/hash';
+import TransactionsList from './TransactionsList';
 
 function TransactionsBlock({
   blockNumber,
@@ -50,15 +51,16 @@ function TransactionsBlock({
             updateChainValue(blockNumber, 'nonce', e.target.value, node);
           }}
         />
-        <Text>Data:</Text>
-        <Textarea
+        <Text>Transactions:</Text>
+        <TransactionsList />
+        {/* <Textarea
           bg='white'
           mb='2'
           onChange={(e) => {
             updateChainValue(blockNumber, 'data', e.target.value, node);
           }}
           value={data}
-        />
+        /> */}
         <Text>Previous hash:</Text>
         <Input
           bg='white'
