@@ -6,28 +6,33 @@ import Transaction from './Transaction';
 function TransactionsList() {
   const [transactions, setTransactions] = useImmer([
     {
-      id: 1,
+      id: 0,
       amount: 10,
       from: 'me',
       to: 'you',
     },
     {
-      id: 2,
+      id: 1,
       amount: 5,
       from: 'you',
       to: 'me',
     },
     {
-      id: 3,
+      id: 2,
       amount: 1,
       from: 'me',
       to: 'you',
     },
   ]);
+  function updateValue(id, name, value) {
+    setTransactions((draft) => {
+      draft[id][name] = value;
+    });
+  }
   return (
     <Box bg='white' borderRadius='md' p='1'>
       {transactions.map((transaction) => (
-        <Transaction transaction={transaction} />
+        <Transaction transaction={transaction} updateValue={updateValue} />
       ))}
     </Box>
   );

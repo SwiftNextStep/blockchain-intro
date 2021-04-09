@@ -6,7 +6,8 @@ import { HStack } from '@chakra-ui/layout';
 import { StatDownArrow } from '@chakra-ui/stat';
 import { StatUpArrow } from '@chakra-ui/stat';
 
-function Transaction({ transaction: { amount, to, from, id } }) {
+function Transaction({ updateValue, transaction }) {
+  const { amount, to, from, id } = transaction;
   return (
     <HStack spacing='1'>
       <InputGroup>
@@ -16,7 +17,11 @@ function Transaction({ transaction: { amount, to, from, id } }) {
           fontSize='1.2em'
           children='$'
         />
-        <Input placeholder='Amount' value={amount} />
+        <Input
+          placeholder='Amount'
+          value={amount}
+          onChange={(e) => updateValue(id, 'amount', e.target.value)}
+        />
       </InputGroup>
       <InputGroup>
         <InputLeftElement
@@ -25,7 +30,11 @@ function Transaction({ transaction: { amount, to, from, id } }) {
           fontSize='1.2em'
           children={<StatUpArrow color='gray.300' />}
         />
-        <Input placeholder='from' value={from} />
+        <Input
+          placeholder='from'
+          value={from}
+          onChange={(e) => updateValue(id, 'from', e.target.value)}
+        />
       </InputGroup>
       <InputGroup>
         <InputLeftElement
@@ -34,7 +43,11 @@ function Transaction({ transaction: { amount, to, from, id } }) {
           fontSize='1.2em'
           children={<StatDownArrow color='gray.300' />}
         />
-        <Input placeholder='to' value='to' />
+        <Input
+          placeholder='to'
+          value={to}
+          onChange={(e) => updateValue(id, 'to', e.target.value)}
+        />
       </InputGroup>
     </HStack>
   );
