@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/layout';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import Transaction from './Transaction';
 
-function TransactionsList() {
+function TransactionsList({ updateData, blockNumber }) {
   const [transactions, setTransactions] = useImmer([
     {
       id: 0,
@@ -24,6 +24,11 @@ function TransactionsList() {
       to: 'you',
     },
   ]);
+
+  useEffect(() => {
+    updateData(blockNumber, 'data', JSON.stringify(transactions));
+  }, [transactions]);
+
   function updateValue(id, name, value) {
     setTransactions((draft) => {
       draft[id][name] = value;

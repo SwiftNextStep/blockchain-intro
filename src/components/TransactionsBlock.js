@@ -52,7 +52,10 @@ function TransactionsBlock({
           }}
         />
         <Text>Transactions:</Text>
-        <TransactionsList />
+        <TransactionsList
+          updateData={updateChainValue}
+          blockNumber={blockNumber}
+        />
         {/* <Textarea
           bg='white'
           mb='2'
