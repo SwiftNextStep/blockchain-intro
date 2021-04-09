@@ -14,6 +14,7 @@ function Distributed() {
         data: 'Genesis Block',
         previousHash: '0'.repeat(64),
         hash: '000',
+        validChain: true,
       },
       {
         blockNumber: 1,
@@ -21,6 +22,7 @@ function Distributed() {
         data: 'Another block',
         previousHash: '',
         hash: '123',
+        validChain: true,
       },
       {
         blockNumber: 2,
@@ -28,6 +30,7 @@ function Distributed() {
         data: 'Final block',
         previousHash: '',
         hash: '123',
+        validChain: true,
       },
     ],
     [
@@ -37,6 +40,7 @@ function Distributed() {
         data: 'Genesis Block',
         previousHash: '0'.repeat(64),
         hash: '000',
+        validChain: true,
       },
       {
         blockNumber: 1,
@@ -44,6 +48,7 @@ function Distributed() {
         data: 'Another block',
         previousHash: '',
         hash: '123',
+        validChain: true,
       },
       {
         blockNumber: 2,
@@ -51,6 +56,7 @@ function Distributed() {
         data: 'Final block',
         previousHash: '',
         hash: '123',
+        validChain: true,
       },
     ],
     [
@@ -60,6 +66,7 @@ function Distributed() {
         data: 'Genesis Block',
         previousHash: '0'.repeat(64),
         hash: '000',
+        validChain: true,
       },
       {
         blockNumber: 1,
@@ -67,6 +74,7 @@ function Distributed() {
         data: 'Another block',
         previousHash: '',
         hash: '123',
+        validChain: true,
       },
       {
         blockNumber: 2,
@@ -74,6 +82,7 @@ function Distributed() {
         data: 'Final block',
         previousHash: '',
         hash: '123',
+        validChain: true,
       },
     ],
   ]);
@@ -84,11 +93,17 @@ function Distributed() {
       acc[cur[lastBlock]['hash']] = (acc[cur[lastBlock]['hash']] || 0) + 1;
       return acc;
     }, {});
-    console.log(hashCount);
+
     const validHash = Object.keys(hashCount).reduce((acc, value) =>
       hashCount[acc] > hashCount[value] ? acc : value
     );
-    console.log(validHash);
+
+    chain.map((blockchain, node) => {
+      const isValid = blockchain[lastBlock].hash === validHash;
+      setChain((draft) => {
+        draft[node][lastBlock].validChain = isValid;
+      });
+    });
   }, [toggleChain]);
 
   function updateChainValue(blockNumber, fieldName, fieldValue, node) {
@@ -133,6 +148,11 @@ function Distributed() {
           <>
             <Heading my='5'>Node {index}</Heading>
             <Grid
+              bg={
+                blockchain[blockchain.length - 1].validChain
+                  ? 'white'
+                  : 'red.500'
+              }
               maxW='100%'
               overflowX='scroll'
               templateColumns='repeat(5, 1fr)'
