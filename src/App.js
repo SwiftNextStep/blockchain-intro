@@ -5,6 +5,7 @@ import Blockchain from './components/Blockchain';
 import Distributed from './components/Distributed';
 import Header from './components/Header';
 import Sha256Hash from './components/Sha256Hash';
+import Transactions from './components/Transactions';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path='/distributed'>
           <Distributed />
+        </Route>
+        <Route path='/transactions'>
+          <Transactions />
         </Route>
       </Switch>
     </Router>
