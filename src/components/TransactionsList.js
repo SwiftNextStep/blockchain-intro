@@ -1,19 +1,14 @@
 import { Box } from '@chakra-ui/layout';
 import React, { useEffect } from 'react';
-import { useImmer } from 'use-immer';
 import Transaction from './Transaction';
 
-function TransactionsList({ updateData, blockNumber, transactions }) {
-  //const [transactions, setTransactions] = useImmer();
-
-  useEffect(() => {
-    updateData(blockNumber, 'data', transactions);
-  }, [transactions]);
-
+function TransactionsList({
+  updateTransactionValue,
+  blockNumber,
+  transactions,
+}) {
   function updateValue(id, name, value) {
-    // setTransactions((draft) => {
-    //   draft[id][name] = value;
-    // });
+    updateTransactionValue(blockNumber, id, name, value);
   }
   return (
     <Box bg='white' borderRadius='md' p='1'>

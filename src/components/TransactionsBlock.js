@@ -19,6 +19,7 @@ function TransactionsBlock({
   hash,
   updateChainValue,
   node,
+  updateTransactionValue,
 }) {
   const [isValid, setIsValid] = useState(false);
   useEffect(() => {
@@ -54,8 +55,8 @@ function TransactionsBlock({
         <Text>Transactions:</Text>
         <TransactionsList
           transactions={data}
-          updateData={updateChainValue}
           blockNumber={blockNumber}
+          updateTransactionValue={updateTransactionValue}
         />
         {/* <Textarea
           bg='white'

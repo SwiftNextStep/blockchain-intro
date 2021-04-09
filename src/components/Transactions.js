@@ -91,11 +91,27 @@ function Transactions() {
       JSON.stringify(chain[blockNumber][fieldName]) ===
       JSON.stringify(fieldValue)
     ) {
-      console.log('Skip change');
       return;
     }
     setChain((draft) => {
       draft[blockNumber][fieldName] = fieldValue;
+    });
+  }
+
+  function updateTransactionValue(
+    blockNumber,
+    transactionId,
+    fieldName,
+    fieldValue
+  ) {
+    if (
+      JSON.stringify(chain[blockNumber]['data'][transactionId][fieldName]) ===
+      JSON.stringify(fieldValue)
+    ) {
+      return;
+    }
+    setChain((draft) => {
+      draft[blockNumber]['data'][transactionId][fieldName] = fieldValue;
     });
   }
 
@@ -104,7 +120,11 @@ function Transactions() {
       console.log(block);
       if (block.blockNumber === 0) {
         return (
-          <TransactionsBlock {...block} updateChainValue={updateChainValue} />
+          <TransactionsBlock
+            {...block}
+            updateChainValue={updateChainValue}
+            updateTransactionValue={updateTransactionValue}
+          />
         );
       }
       const previousHashValue = chain[block.blockNumber - 1].hash;
@@ -112,6 +132,7 @@ function Transactions() {
         <TransactionsBlock
           {...block}
           previousHash={previousHashValue}
+          updateTransactionValue={updateTransactionValue}
           updateChainValue={updateChainValue}
         />
       );
