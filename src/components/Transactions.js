@@ -3,6 +3,7 @@ import { Grid } from '@chakra-ui/layout';
 import React from 'react';
 import { useImmer } from 'use-immer';
 import BlockchainBlock from './BlockchainBlock';
+import TransactionsBlock from './TransactionsBlock';
 
 function Transactions() {
   const [chain, setChain] = useImmer([
@@ -39,12 +40,12 @@ function Transactions() {
     return chain.map((block) => {
       if (block.blockNumber === 0) {
         return (
-          <BlockchainBlock {...block} updateChainValue={updateChainValue} />
+          <TransactionsBlock {...block} updateChainValue={updateChainValue} />
         );
       }
       const previousHashValue = chain[block.blockNumber - 1].hash;
       return (
-        <BlockchainBlock
+        <TransactionsBlock
           {...block}
           previousHash={previousHashValue}
           updateChainValue={updateChainValue}
