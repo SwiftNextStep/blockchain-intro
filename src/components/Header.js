@@ -34,6 +34,7 @@ function Header() {
         <MenuItems link='/blockchain'>Blockchain</MenuItems>
         <MenuItems link='/distributed'>Distributed</MenuItems>
         <MenuItems link='/transactions'>Transactions</MenuItems>
+        <MenuItems link='/wallet'>Wallet</MenuItems>
       </Box>
     </Flex>
   );
