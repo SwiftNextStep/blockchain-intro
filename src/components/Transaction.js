@@ -20,7 +20,7 @@ function Transaction({ updateValue, transaction }) {
         <Input
           placeholder='Amount'
           value={amount}
-          onChange={(e) => updateValue(id, 'amount', e.target.value)}
+          onChange={(e) => updateValue(id, 'amount', Number(e.target.value))}
         />
       </InputGroup>
       <InputGroup>
