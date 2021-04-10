@@ -1,29 +1,19 @@
 import { Button } from '@chakra-ui/button';
 import { LinkIcon, LockIcon, UnlockIcon } from '@chakra-ui/icons';
 import { InputLeftElement } from '@chakra-ui/input';
-import { InputLeftAddon } from '@chakra-ui/input';
 import { InputGroup } from '@chakra-ui/input';
 import { Input } from '@chakra-ui/input';
 import { Container } from '@chakra-ui/layout';
 import { Box } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/layout';
-import { Textarea } from '@chakra-ui/textarea';
-import React, { useEffect, useState } from 'react';
-import { sha256Hash } from '../blockchain/util/hash';
+import React, { useState } from 'react';
 
 function Wallet() {
-  const [data, setData] = useState('');
-  const [sha256, setSha256] = useState();
-  useEffect(() => {
-    const hashedData = sha256Hash(data);
-    setSha256(hashedData);
-  }, [data]);
+  const [publicKey, setPublicKey] = useState('');
+  const [privateKey, setPrivateKey] = useState('');
 
-  function updateData(e) {
-    const formData = e.target.value;
-    setData(formData);
-  }
+  function handleCreateWallet() {}
 
   return (
     <Container maxW='80%' mt='6'>
@@ -35,7 +25,7 @@ function Wallet() {
             pointerEvents='none'
             children={<UnlockIcon color='gray.300' />}
           />
-          <Input bg='white' mb='2' onChange={updateData} />
+          <Input bg='white' mb='2' value={publicKey} />
         </InputGroup>
         <Text>Private Key:</Text>
         <InputGroup>
@@ -43,9 +33,13 @@ function Wallet() {
             pointerEvents='none'
             children={<LockIcon color='gray.300' />}
           />
-          <Input bg='white' mb='6' value={sha256} />
+          <Input bg='white' mb='6' value={privateKey} />
         </InputGroup>
-        <Button colorScheme='blue' rightIcon={<LinkIcon />}>
+        <Button
+          colorScheme='blue'
+          rightIcon={<LinkIcon />}
+          onClick={handleCreateWallet}
+        >
           Create Wallet
         </Button>
       </Box>
