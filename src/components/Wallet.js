@@ -1,4 +1,8 @@
 import { Button } from '@chakra-ui/button';
+import { LinkIcon, LockIcon, UnlockIcon } from '@chakra-ui/icons';
+import { InputLeftElement } from '@chakra-ui/input';
+import { InputLeftAddon } from '@chakra-ui/input';
+import { InputGroup } from '@chakra-ui/input';
 import { Input } from '@chakra-ui/input';
 import { Container } from '@chakra-ui/layout';
 import { Box } from '@chakra-ui/layout';
@@ -25,11 +29,25 @@ function Wallet() {
     <Container maxW='80%' mt='6'>
       <Heading mb='10'>Wallet</Heading>
       <Box bg='green.100' padding='6' borderRadius='md'>
-        <Text>Data:</Text>
-        <Input bg='white' mb='2' onChange={updateData} />
-        <Text>SHA256:</Text>
-        <Input bg='white' mb='6' value={sha256} />
-        <Button colorScheme='blue'>Create Wallet</Button>
+        <Text>Public Key:</Text>
+        <InputGroup>
+          <InputLeftElement
+            pointerEvents='none'
+            children={<UnlockIcon color='gray.300' />}
+          />
+          <Input bg='white' mb='2' onChange={updateData} />
+        </InputGroup>
+        <Text>Private Key:</Text>
+        <InputGroup>
+          <InputLeftElement
+            pointerEvents='none'
+            children={<LockIcon color='gray.300' />}
+          />
+          <Input bg='white' mb='6' value={sha256} />
+        </InputGroup>
+        <Button colorScheme='blue' rightIcon={<LinkIcon />}>
+          Create Wallet
+        </Button>
       </Box>
     </Container>
   );
