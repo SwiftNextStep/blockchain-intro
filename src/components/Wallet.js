@@ -8,16 +8,23 @@ import { Box } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/layout';
 import React, { useState } from 'react';
+import { getSecp256Keys } from '../blockchain/util/wallet';
 
 function Wallet() {
   const [publicKey, setPublicKey] = useState('');
   const [privateKey, setPrivateKey] = useState('');
 
-  function handleCreateWallet() {}
+  function handleCreateWallet() {
+    const { publicKey, privateKey } = getSecp256Keys();
+    console.log('publicKey: ', publicKey);
+    console.log('privateKey: ', privateKey);
+    setPublicKey(publicKey);
+    setPrivateKey(privateKey);
+  }
 
   return (
-    <Container maxW='80%' mt='6'>
-      <Heading mb='10'>Wallet</Heading>
+    <Container maxW='80%' mt='3'>
+      <Heading mb='3'>Wallet</Heading>
       <Box bg='green.100' padding='6' borderRadius='md'>
         <Text>Public Key:</Text>
         <InputGroup>
@@ -33,7 +40,7 @@ function Wallet() {
             pointerEvents='none'
             children={<LockIcon color='gray.300' />}
           />
-          <Input bg='white' mb='6' value={privateKey} />
+          <Input bg='white' mb='2' value={privateKey} />
         </InputGroup>
         <Button
           colorScheme='blue'

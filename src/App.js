@@ -5,6 +5,7 @@ import Blockchain from './components/Blockchain';
 import Distributed from './components/Distributed';
 import Header from './components/Header';
 import Sha256Hash from './components/Sha256Hash';
+import WalletSignAndVerify from './components/WalletSignAndVerify';
 import Transactions from './components/Transactions';
 import Wallet from './components/Wallet';
 
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path='/wallet'>
           <Wallet />
+        </Route>
+        <Route path='/signed'>
+          <WalletSignAndVerify />
         </Route>
       </Switch>
     </Router>
