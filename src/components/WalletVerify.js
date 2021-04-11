@@ -28,9 +28,9 @@ function WalletVerify({ walletData, updateWalletData }) {
         <Text>Data:</Text>
         <Textarea bg='white' mb='2' onChange={updateData} />
         <Text>Public Key:</Text>
-        <Input bg='white' mb='2' value={sha256} />
+        <Input bg='white' mb='2' value={walletData.publicKey} />
         <Text>Signature:</Text>
-        <Input bg='white' mb='2' value={sha256} />
+        <Input bg='white' mb='2' value={walletData.signature} />
         <Button colorScheme='blue'>Verify Signature</Button>
       </Box>
     </Container>

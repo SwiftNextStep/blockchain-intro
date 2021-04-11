@@ -26,12 +26,17 @@ function WalletSign({ walletData, updateWalletData }) {
       <Heading mb='3'>Sign Transaction</Heading>
       <Box bg='green.100' padding='6' borderRadius='md'>
         <Text>Data:</Text>
-        <Textarea bg='white' mb='2' onChange={updateData} />
+        <Textarea bg='white' mb='2' onChange={setData} value={data} />
         <Text>Private Key:</Text>
-        <Input bg='white' mb='2' value={sha256} />
+        <Input bg='white' mb='2' value={walletData.privateKey} />
         <Button colorScheme='blue'>Sign Transaction</Button>
         <Text mt='2'>Signature:</Text>
-        <Input bg='white' mb='2' value={sha256} />
+        <Input
+          bg='white'
+          mb='2'
+          value={walletData.signature}
+          onChange={() => updateWalletData('signature', '123')}
+        />
       </Box>
     </Container>
   );
