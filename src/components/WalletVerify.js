@@ -8,7 +8,7 @@ import { Textarea } from '@chakra-ui/textarea';
 import React, { useEffect, useState } from 'react';
 import { sha256Hash } from '../blockchain/util/hash';
 
-function WalletVerify() {
+function WalletVerify({ walletData, setWalletData }) {
   const [data, setData] = useState('');
   const [sha256, setSha256] = useState();
   useEffect(() => {

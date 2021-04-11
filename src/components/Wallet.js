@@ -10,7 +10,7 @@ import { Heading } from '@chakra-ui/layout';
 import React, { useState } from 'react';
 import { getSecp256Keys } from '../blockchain/util/wallet';
 
-function Wallet() {
+function Wallet({ walletData, setWalletData }) {
   const [publicKey, setPublicKey] = useState('');
   const [privateKey, setPrivateKey] = useState('');
 
