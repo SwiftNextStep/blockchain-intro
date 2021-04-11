@@ -13,11 +13,19 @@ function WalletSignAndVerify() {
     signature: '',
     isSignatureValid: false,
   });
+  function updateWalletData(field, value) {
+    setWalletData((draft) => {
+      draft[field] = value;
+    });
+  }
   return (
     <>
-      <Wallet walletData={walletData} setWalletData={setWalletData} />
-      <WalletSign walletData={walletData} setWalletData={setWalletData} />
-      <WalletVerify walletData={walletData} setWalletData={setWalletData} />
+      <Wallet updateWalletData={updateWalletData} />
+      <WalletSign walletData={walletData} updateWalletData={updateWalletData} />
+      <WalletVerify
+        walletData={walletData}
+        updateWalletData={updateWalletData}
+      />
     </>
   );
 }

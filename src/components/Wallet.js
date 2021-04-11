@@ -7,12 +7,17 @@ import { Container } from '@chakra-ui/layout';
 import { Box } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/layout';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getSecp256Keys } from '../blockchain/util/wallet';
 
-function Wallet({ walletData, setWalletData }) {
+function Wallet({ updateWalletData }) {
   const [publicKey, setPublicKey] = useState('');
   const [privateKey, setPrivateKey] = useState('');
+
+  useEffect(() => {
+    updateWalletData('publicKey', publicKey);
+    updateWalletData('privateKey', privateKey);
+  }, [publicKey, privateKey]);
 
   function handleCreateWallet() {
     const { publicKey, privateKey } = getSecp256Keys();
