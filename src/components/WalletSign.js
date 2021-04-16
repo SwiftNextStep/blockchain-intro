@@ -10,6 +10,8 @@ import React, { useState } from 'react';
 function WalletSign({ walletData, updateWalletData }) {
   const [data, setData] = useState('');
 
+  function handleSignTransaction() {}
+
   return (
     <Container maxW='80%' mt='3'>
       <Heading mb='3'>Sign Transaction</Heading>
@@ -23,7 +25,9 @@ function WalletSign({ walletData, updateWalletData }) {
         />
         <Text>Private Key:</Text>
         <Input bg='white' mb='2' value={walletData.privateKey} />
-        <Button colorScheme='blue'>Sign Transaction</Button>
+        <Button colorScheme='blue' onClick={handleSignTransaction}>
+          Sign Transaction
+        </Button>
         <Text mt='2'>Signature:</Text>
         <Input
           bg='white'
