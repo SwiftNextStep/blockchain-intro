@@ -16,3 +16,9 @@ export function hashBlock({ blockNumber, nonce, data, previousHash }) {
   const blockHash = sha256Hash(blockString);
   return blockHash;
 }
+
+export function hashData(data) {
+  const dataString = JSON.stringify(data);
+  const dataHash = sha256Hash(dataString);
+  return dataHash;
+}
