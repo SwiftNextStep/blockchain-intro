@@ -30,7 +30,12 @@ function WalletVerify({ walletData, updateWalletData }) {
         <Text>Public Key:</Text>
         <Input bg='white' mb='2' value={walletData.publicKey} />
         <Text>Signature:</Text>
-        <Input bg='white' mb='2' value={walletData.signature} />
+        <Input
+          bg='white'
+          mb='2'
+          value={walletData.signature}
+          onChange={(e) => updateWalletData('signature', e.target.value)}
+        />
         <Button colorScheme='blue'>Verify Signature</Button>
       </Box>
     </Container>
