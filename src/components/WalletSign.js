@@ -5,28 +5,22 @@ import { Box } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/layout';
 import { Textarea } from '@chakra-ui/textarea';
-import React, { useEffect, useState } from 'react';
-import { sha256Hash } from '../blockchain/util/hash';
+import React, { useState } from 'react';
 
 function WalletSign({ walletData, updateWalletData }) {
   const [data, setData] = useState('');
-  const [sha256, setSha256] = useState();
-  useEffect(() => {
-    const hashedData = sha256Hash(data);
-    setSha256(hashedData);
-  }, [data]);
-
-  function updateData(e) {
-    const formData = e.target.value;
-    setData(formData);
-  }
 
   return (
     <Container maxW='80%' mt='3'>
       <Heading mb='3'>Sign Transaction</Heading>
       <Box bg='green.100' padding='6' borderRadius='md'>
         <Text>Data:</Text>
-        <Textarea bg='white' mb='2' onChange={setData} value={data} />
+        <Textarea
+          bg='white'
+          mb='2'
+          onChange={(e) => setData(e.target.value)}
+          value={data}
+        />
         <Text>Private Key:</Text>
         <Input bg='white' mb='2' value={walletData.privateKey} />
         <Button colorScheme='blue'>Sign Transaction</Button>
