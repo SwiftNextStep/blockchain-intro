@@ -20,8 +20,6 @@ export function signTransaction(privateKey, data) {
   const hashedData = hashData(data);
   const keypair = secp256k1.keyFromPrivate(privateKey);
   const sign = keypair.sign(hashedData).toDER();
-  console.log('sign:', sign);
   const buffer = Buffer(sign).toString('hex');
-  console.log('buffer:', buffer);
-  return sign;
+  return buffer;
 }
