@@ -13,13 +13,13 @@ function WalletSignAndVerifyWithTransactions() {
         amount: 1,
         to: 'you',
         from: 'me',
-        id: 1,
+        id: 0,
       },
       {
         amount: 3,
         to: 'me',
         from: 'you',
-        id: 2,
+        id: 1,
       },
     ],
     signature: '',
@@ -30,7 +30,18 @@ function WalletSignAndVerifyWithTransactions() {
       draft[field] = value;
     });
   }
-  function updateTransactionValue() {}
+
+  function updateTransactionValue(transactionId, fieldName, fieldValue) {
+    if (
+      JSON.stringify(walletData['data'][transactionId][fieldName]) ===
+      JSON.stringify(fieldValue)
+    ) {
+      return;
+    }
+    setWalletData((draft) => {
+      draft['data'][transactionId][fieldName] = fieldValue;
+    });
+  }
 
   return (
     <>
