@@ -43,6 +43,7 @@ function WalletSignAndVerifyWithTransactions() {
       <WalletVerify
         walletData={walletData}
         updateWalletData={updateWalletData}
+        updateTransactionValue={updateTransactionValue}
       />
     </>
   );
