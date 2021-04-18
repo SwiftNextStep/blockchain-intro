@@ -34,7 +34,12 @@ function WalletVerify({ walletData, updateWalletData }) {
         <Text>Data:</Text>
         <Textarea bg='white' mb='2' onChange={updateData} />
         <Text>Public Key:</Text>
-        <Input bg='white' mb='2' value={walletData.publicKey} />
+        <Input
+          bg='white'
+          mb='2'
+          value={walletData.publicKey}
+          onChange={(e) => updateWalletData('publicKey', e.target.value)}
+        />
         <Text>Signature:</Text>
         <Input
           bg='white'
