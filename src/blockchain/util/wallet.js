@@ -27,8 +27,8 @@ export function signTransaction(privateKey, data) {
 export function verifyTransaction({ publicKey, data, signature }) {
   const secp256k1 = init();
   const hashedData = hashData(data);
-  const key = secp256k1.keyFromPublic(publicKey, 'hex');
   try {
+    const key = secp256k1.keyFromPublic(publicKey, 'hex');
     const isValid = key.verify(hashedData, signature);
     return isValid;
   } catch {
