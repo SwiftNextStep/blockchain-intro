@@ -11,11 +11,7 @@ import { verifyTransaction } from '../blockchain/util/wallet';
 
 function WalletVerify({ walletData, updateWalletData }) {
   const [data, setData] = useState('');
-  const [sha256, setSha256] = useState();
-  useEffect(() => {
-    const hashedData = sha256Hash(data);
-    setSha256(hashedData);
-  }, [data]);
+  const [isValid, setIsValid] = useState(false);
 
   function updateData(e) {
     const formData = e.target.value;
@@ -23,18 +19,18 @@ function WalletVerify({ walletData, updateWalletData }) {
   }
 
   function handleVerify() {
-    const isValid = verifyTransaction({
+    const signResult = verifyTransaction({
       data,
       publicKey: walletData.publicKey,
       signature: walletData.signature,
     });
-    console.log('isValid', isValid);
+    setIsValid(signResult);
   }
 
   return (
     <Container maxW='80%' mt='3'>
       <Heading mb='3'>Verify Transaction</Heading>
-      <Box bg='green.100' padding='6' borderRadius='md'>
+      <Box bg={isValid ? 'green.100' : 'red.100'} padding='6' borderRadius='md'>
         <Text>Data:</Text>
         <Textarea bg='white' mb='2' onChange={updateData} />
         <Text>Public Key:</Text>
