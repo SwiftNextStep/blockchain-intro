@@ -7,6 +7,7 @@ import { Heading } from '@chakra-ui/layout';
 import { Textarea } from '@chakra-ui/textarea';
 import React, { useEffect, useState } from 'react';
 import { sha256Hash } from '../blockchain/util/hash';
+import { verifyTransaction } from '../blockchain/util/wallet';
 
 function WalletVerify({ walletData, updateWalletData }) {
   const [data, setData] = useState('');
@@ -19,6 +20,15 @@ function WalletVerify({ walletData, updateWalletData }) {
   function updateData(e) {
     const formData = e.target.value;
     setData(formData);
+  }
+
+  function handleVerify() {
+    const isValid = verifyTransaction({
+      data,
+      publicKey: walletData.publicKey,
+      signature: walletData.signature,
+    });
+    console.log('isValid', isValid);
   }
 
   return (
@@ -36,7 +46,9 @@ function WalletVerify({ walletData, updateWalletData }) {
           value={walletData.signature}
           onChange={(e) => updateWalletData('signature', e.target.value)}
         />
-        <Button colorScheme='blue'>Verify Signature</Button>
+        <Button colorScheme='blue' onClick={handleVerify}>
+          Verify Signature
+        </Button>
       </Box>
     </Container>
   );
