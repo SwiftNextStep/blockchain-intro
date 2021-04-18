@@ -7,12 +7,15 @@ import { Heading } from '@chakra-ui/layout';
 import { Textarea } from '@chakra-ui/textarea';
 import React, { useState } from 'react';
 import { signTransaction } from '../../blockchain/util/wallet';
+import TransactionsListWallet from './TransactionsListWallet';
 
-function WalletSignWithTransactions({ walletData, updateWalletData }) {
-  const [data, setData] = useState('');
-
+function WalletSignWithTransactions({
+  walletData,
+  updateWalletData,
+  updateTransactionValue,
+}) {
   function handleSignTransaction() {
-    const sign = signTransaction(walletData.privateKey, data);
+    const sign = signTransaction(walletData.privateKey, walletData.data);
     console.log('sign', sign);
     updateWalletData('signature', sign);
   }
@@ -21,12 +24,10 @@ function WalletSignWithTransactions({ walletData, updateWalletData }) {
     <Container maxW='80%' mt='3'>
       <Heading mb='3'>Sign Transaction</Heading>
       <Box bg='green.100' padding='6' borderRadius='md'>
-        <Text>Data:</Text>
-        <Textarea
-          bg='white'
-          mb='2'
-          onChange={(e) => setData(e.target.value)}
-          value={data}
+        <Text>Transactions:</Text>
+        <TransactionsListWallet
+          transactions={walletData.data}
+          updateTransactionValue={updateTransactionValue}
         />
         <Text>Private Key:</Text>
         <Input bg='white' mb='2' value={walletData.privateKey} />

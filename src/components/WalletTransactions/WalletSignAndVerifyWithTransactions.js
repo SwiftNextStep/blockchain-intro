@@ -8,7 +8,20 @@ function WalletSignAndVerifyWithTransactions() {
   const [walletData, setWalletData] = useImmer({
     publicKey: '',
     privateKey: '',
-    data: '',
+    data: [
+      {
+        amount: 1,
+        to: 'you',
+        from: 'me',
+        id: 1,
+      },
+      {
+        amount: 3,
+        to: 'me',
+        from: 'you',
+        id: 2,
+      },
+    ],
     signature: '',
     isSignatureValid: false,
   });
@@ -17,10 +30,16 @@ function WalletSignAndVerifyWithTransactions() {
       draft[field] = value;
     });
   }
+  function updateTransactionValue() {}
+
   return (
     <>
       <Wallet updateWalletData={updateWalletData} />
-      <WalletSign walletData={walletData} updateWalletData={updateWalletData} />
+      <WalletSign
+        walletData={walletData}
+        updateWalletData={updateWalletData}
+        updateTransactionValue={updateTransactionValue}
+      />
       <WalletVerify
         walletData={walletData}
         updateWalletData={updateWalletData}

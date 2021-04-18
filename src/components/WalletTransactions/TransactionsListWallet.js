@@ -1,14 +1,10 @@
 import { Box } from '@chakra-ui/layout';
 import React from 'react';
-import Transaction from './Transaction';
+import Transaction from './TransactionWallet';
 
-function TransactionsListWallet({
-  updateTransactionValue,
-  blockNumber,
-  transactions,
-}) {
+function TransactionsListWallet({ updateTransactionValue, transactions }) {
   function updateValue(id, name, value) {
-    updateTransactionValue(blockNumber, id, name, value);
+    updateTransactionValue(id, name, value);
   }
   return (
     <Box bg='white' borderRadius='md' p='1'>
