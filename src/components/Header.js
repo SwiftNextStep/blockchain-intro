@@ -29,15 +29,19 @@ function Header() {
       </Flex>
       <Spacer />
       <Box display='flex' alignItems='center'>
-        <MenuItems link='/sha256'>SHA256</MenuItems>
-        <MenuItems link='/block'>Block</MenuItems>
-        <MenuItems link='/blockchain'>Blockchain</MenuItems>
-        <MenuItems link='/distributed'>Distributed</MenuItems>
-        <MenuItems link='/transactions'>Transactions</MenuItems>
-        <MenuItems link='/wallet'>Wallet</MenuItems>
-        <MenuItems link='/signed'>Signed</MenuItems>
-        <MenuItems link='/wallet-transactions'>Wallet-Transactions</MenuItems>
-        <MenuItems link='/transactions-wallet'>
+        <MenuItems link='/blockchain-intro/sha256'>SHA256</MenuItems>
+        <MenuItems link='/blockchain-intro/block'>Block</MenuItems>
+        <MenuItems link='/blockchain-intro/blockchain'>Blockchain</MenuItems>
+        <MenuItems link='/blockchain-intro/distributed'>Distributed</MenuItems>
+        <MenuItems link='/blockchain-intro/transactions'>
+          Transactions
+        </MenuItems>
+        <MenuItems link='/blockchain-intro/wallet'>Wallet</MenuItems>
+        <MenuItems link='/blockchain-intro/signed'>Signed</MenuItems>
+        <MenuItems link='/blockchain-intro/wallet-transactions'>
+          Wallet-Transactions
+        </MenuItems>
+        <MenuItems link='/blockchain-intro/transactions-wallet'>
           Transactions with Wallet
         </MenuItems>
       </Box>
