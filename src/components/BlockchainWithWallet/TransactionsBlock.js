@@ -32,7 +32,7 @@ function TransactionsBlock({
       });
     });
     if (result) {
-      return setIsValid(false);
+      setIsValid(false);
     }
     const hashedData = hashBlock({ blockNumber, nonce, data, previousHash });
     const checkIsValid =
