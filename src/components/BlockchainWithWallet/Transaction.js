@@ -5,43 +5,60 @@ import { InputGroup } from '@chakra-ui/input';
 import { HStack } from '@chakra-ui/layout';
 import { StatDownArrow } from '@chakra-ui/stat';
 import { StatUpArrow } from '@chakra-ui/stat';
+import { VStack } from '@chakra-ui/layout';
+import { LockIcon } from '@chakra-ui/icons';
 
 function Transaction({ updateValue, transaction }) {
   const { amount, to, from, id } = transaction;
   return (
-    <HStack spacing='1'>
+    <VStack spacing='0' mb='2'>
+      <HStack spacing='1'>
+        <InputGroup>
+          <InputLeftElement
+            pointerEvents='none'
+            color='gray.300'
+            fontSize='1.2em'
+            children='$'
+          />
+          <Input
+            placeholder='Amount'
+            value={amount}
+            onChange={(e) => updateValue(id, 'amount', Number(e.target.value))}
+          />
+        </InputGroup>
+        <InputGroup>
+          <InputLeftElement
+            pointerEvents='none'
+            color='gray.300'
+            fontSize='1.2em'
+            children={<StatUpArrow color='gray.300' />}
+          />
+          <Input
+            placeholder='from'
+            value={from}
+            onChange={(e) => updateValue(id, 'from', e.target.value)}
+          />
+        </InputGroup>
+        <InputGroup>
+          <InputLeftElement
+            pointerEvents='none'
+            color='gray.300'
+            fontSize='1.2em'
+            children={<StatDownArrow color='gray.300' />}
+          />
+          <Input
+            placeholder='to'
+            value={to}
+            onChange={(e) => updateValue(id, 'to', e.target.value)}
+          />
+        </InputGroup>
+      </HStack>
       <InputGroup>
         <InputLeftElement
           pointerEvents='none'
           color='gray.300'
           fontSize='1.2em'
-          children='$'
-        />
-        <Input
-          placeholder='Amount'
-          value={amount}
-          onChange={(e) => updateValue(id, 'amount', Number(e.target.value))}
-        />
-      </InputGroup>
-      <InputGroup>
-        <InputLeftElement
-          pointerEvents='none'
-          color='gray.300'
-          fontSize='1.2em'
-          children={<StatUpArrow color='gray.300' />}
-        />
-        <Input
-          placeholder='from'
-          value={from}
-          onChange={(e) => updateValue(id, 'from', e.target.value)}
-        />
-      </InputGroup>
-      <InputGroup>
-        <InputLeftElement
-          pointerEvents='none'
-          color='gray.300'
-          fontSize='1.2em'
-          children={<StatDownArrow color='gray.300' />}
+          children={<LockIcon color='gray.300' />}
         />
         <Input
           placeholder='to'
@@ -49,7 +66,7 @@ function Transaction({ updateValue, transaction }) {
           onChange={(e) => updateValue(id, 'to', e.target.value)}
         />
       </InputGroup>
-    </HStack>
+    </VStack>
   );
 }
 
