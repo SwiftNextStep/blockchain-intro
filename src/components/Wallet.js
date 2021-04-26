@@ -15,6 +15,7 @@ function Wallet({ updateWalletData }) {
   const [privateKey, setPrivateKey] = useState('');
 
   useEffect(() => {
+    if (updateWalletData === undefined) return;
     updateWalletData('publicKey', publicKey);
     updateWalletData('privateKey', privateKey);
   }, [publicKey, privateKey]);
