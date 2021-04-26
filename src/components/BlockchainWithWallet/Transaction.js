@@ -86,7 +86,7 @@ function Transaction({ updateValue, transaction }) {
             bg={isSignetureValid ? 'green.50' : 'red.50'}
             placeholder=''
             value={signed}
-            onChange={(e) => updateValue(id, 'to', e.target.value)}
+            onChange={(e) => updateValue(id, 'signed', e.target.value)}
           />
         </InputGroup>
       </VStack>
