@@ -10,6 +10,7 @@ import { LockIcon } from '@chakra-ui/icons';
 import { Modal } from '@chakra-ui/modal';
 import PrivateKeyModal from './PrivateKeyModal';
 import { useDisclosure } from '@chakra-ui/hooks';
+import { Button } from '@chakra-ui/button';
 
 function Transaction({ updateValue, transaction }) {
   const { amount, to, from, id } = transaction;
@@ -62,13 +63,8 @@ function Transaction({ updateValue, transaction }) {
             />
           </InputGroup>
         </HStack>
-        <InputGroup onClick={onOpen}>
-          <InputLeftElement
-            pointerEvents='none'
-            color='gray.300'
-            fontSize='1.2em'
-            children={<LockIcon color='gray.300' />}
-          />
+        <InputGroup>
+          <Button leftIcon={<LockIcon />} onClick={onOpen} />
           <Input
             placeholder='to'
             value={to}

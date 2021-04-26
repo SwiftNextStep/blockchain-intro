@@ -28,7 +28,6 @@ function PrivateKeyModal({ isOpen, onOpen, onClose }) {
           </Button>
           <Button onClick={onClose}>Cancel</Button>
         </ModalFooter>
-        <ModalCloseButton />
       </ModalContent>
     </Modal>
   );
