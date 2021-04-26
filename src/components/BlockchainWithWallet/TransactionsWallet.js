@@ -3,6 +3,7 @@ import { Grid } from '@chakra-ui/layout';
 import React from 'react';
 import { useImmer } from 'use-immer';
 import TransactionsBlock from './TransactionsBlock';
+import Wallet from '../Wallet';
 
 function TransactionsWallet() {
   const [chain, setChain] = useImmer([
@@ -141,12 +142,14 @@ function TransactionsWallet() {
   return (
     <>
       <Heading mb='10' mt='10'>
-        Transactions
+        Transactions with Wallet
       </Heading>
 
       <Grid maxW='100%' overflowX='scroll' templateColumns='repeat(5, 1fr)'>
         {getBlockchainBlocks()}
       </Grid>
+      <Wallet />
+      <Wallet />
     </>
   );
 }
