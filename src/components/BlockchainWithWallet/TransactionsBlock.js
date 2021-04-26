@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { mineBlock } from '../../blockchain/block';
 import { DIFICULTY } from '../../blockchain/util/constants';
 import { hashBlock } from '../../blockchain/util/hash';
+import { verifyTransaction } from '../../blockchain/util/wallet';
 import TransactionsList from './TransactionsList';
 
 function TransactionsBlock({
@@ -21,6 +22,18 @@ function TransactionsBlock({
 }) {
   const [isValid, setIsValid] = useState(false);
   useEffect(() => {
+    const result = data.find((transaction) => {
+      const tempTransaction = { ...transaction };
+      delete tempTransaction.signed;
+      return !verifyTransaction({
+        publicKey: transaction.from,
+        data: tempTransaction,
+        signature: transaction.signed,
+      });
+    });
+    if (result) {
+      return setIsValid(false);
+    }
     const hashedData = hashBlock({ blockNumber, nonce, data, previousHash });
     const checkIsValid =
       hashedData.substring(0, DIFICULTY) === '0'.repeat(DIFICULTY);
