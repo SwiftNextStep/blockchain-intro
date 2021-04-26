@@ -8,10 +8,22 @@ import { ModalBody } from '@chakra-ui/modal';
 import { ModalHeader } from '@chakra-ui/modal';
 import { ModalOverlay } from '@chakra-ui/modal';
 import { Modal } from '@chakra-ui/modal';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { signTransaction } from '../../blockchain/util/wallet';
 
-function PrivateKeyModal({ isOpen, onOpen, onClose }) {
+function PrivateKeyModal({
+  isOpen,
+  onOpen,
+  onClose,
+  transaction,
+  updateValue,
+}) {
+  const [privateKey, setPrivateKey] = useState('');
   const initialRef = useRef();
+  function handleSign() {
+    const signed = signTransaction(privateKey, transaction);
+    updateValue(transaction.id, 'signed', signed);
+  }
   return (
     <Modal isOpen={isOpen} initialFocusRef={initialRef}>
       <ModalOverlay />
@@ -19,12 +31,17 @@ function PrivateKeyModal({ isOpen, onOpen, onClose }) {
         <ModalHeader>Sign your transaction</ModalHeader>
         <ModalBody>
           <FormControl>
-            <Input ref={initialRef} placeholder='Enter your private key' />
+            <Input
+              onChange={(e) => setPrivateKey(e.target.value)}
+              value={privateKey}
+              ref={initialRef}
+              placeholder='Enter your private key'
+            />
           </FormControl>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme='blue' mr='3'>
-            Save
+          <Button colorScheme='blue' mr='3' onClick={handleSign}>
+            Sign
           </Button>
           <Button onClick={onClose}>Cancel</Button>
         </ModalFooter>

@@ -18,7 +18,13 @@ function Transaction({ updateValue, transaction }) {
 
   return (
     <>
-      <PrivateKeyModal isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+      <PrivateKeyModal
+        transaction={transaction}
+        updateValue={updateValue}
+        isOpen={isOpen}
+        onClose={onClose}
+        onOpen={onOpen}
+      />
       <VStack spacing='0' mb='2'>
         <HStack spacing='1'>
           <InputGroup>
