@@ -21,7 +21,9 @@ function PrivateKeyModal({
   const [privateKey, setPrivateKey] = useState('');
   const initialRef = useRef();
   function handleSign() {
-    const signed = signTransaction(privateKey, transaction);
+    const tempTransaction = { ...transaction };
+    delete tempTransaction.signed;
+    const signed = signTransaction(privateKey, tempTransaction);
     updateValue(transaction.id, 'signed', signed);
     onClose();
   }

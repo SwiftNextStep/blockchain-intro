@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from '@chakra-ui/input';
 import { InputLeftElement } from '@chakra-ui/input';
 import { InputGroup } from '@chakra-ui/input';
@@ -11,11 +11,22 @@ import { Modal } from '@chakra-ui/modal';
 import PrivateKeyModal from './PrivateKeyModal';
 import { useDisclosure } from '@chakra-ui/hooks';
 import { Button } from '@chakra-ui/button';
+import { verifyTransaction } from '../../blockchain/util/wallet';
 
 function Transaction({ updateValue, transaction }) {
   const { amount, to, from, id, signed } = transaction;
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [isSignetureValid, setIsSignetureValid] = useState(false);
+  useEffect(() => {
+    const data = { ...transaction };
+    delete data.signed;
+    const result = verifyTransaction({
+      publicKey: from,
+      data,
+      signature: signed,
+    });
+    setIsSignetureValid(result);
+  }, [signed]);
   return (
     <>
       <PrivateKeyModal
@@ -72,7 +83,8 @@ function Transaction({ updateValue, transaction }) {
         <InputGroup>
           <Button leftIcon={<LockIcon />} onClick={onOpen} />
           <Input
-            placeholder='to'
+            bg={isSignetureValid ? 'green.50' : 'red.50'}
+            placeholder=''
             value={signed}
             onChange={(e) => updateValue(id, 'to', e.target.value)}
           />
