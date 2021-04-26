@@ -13,7 +13,7 @@ import TransactionsWallet from './components/BlockchainWithWallet/TransactionsWa
 
 function App() {
   return (
-    <Router>
+    <Router basename='/blockchain-intro'>
       <Header />
       <Switch>
         <Route path='/sha256'>
