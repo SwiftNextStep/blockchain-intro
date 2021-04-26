@@ -148,8 +148,6 @@ function TransactionsWallet() {
       <Grid maxW='100%' overflowX='scroll' templateColumns='repeat(5, 1fr)'>
         {getBlockchainBlocks()}
       </Grid>
-      <Wallet />
-      <Wallet />
     </>
   );
 }
