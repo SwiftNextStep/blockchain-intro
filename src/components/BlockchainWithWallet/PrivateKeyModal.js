@@ -23,6 +23,7 @@ function PrivateKeyModal({
   function handleSign() {
     const signed = signTransaction(privateKey, transaction);
     updateValue(transaction.id, 'signed', signed);
+    onClose();
   }
   return (
     <Modal isOpen={isOpen} initialFocusRef={initialRef}>

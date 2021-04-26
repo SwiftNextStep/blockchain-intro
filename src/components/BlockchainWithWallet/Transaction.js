@@ -13,7 +13,7 @@ import { useDisclosure } from '@chakra-ui/hooks';
 import { Button } from '@chakra-ui/button';
 
 function Transaction({ updateValue, transaction }) {
-  const { amount, to, from, id } = transaction;
+  const { amount, to, from, id, signed } = transaction;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -73,7 +73,7 @@ function Transaction({ updateValue, transaction }) {
           <Button leftIcon={<LockIcon />} onClick={onOpen} />
           <Input
             placeholder='to'
-            value={to}
+            value={signed}
             onChange={(e) => updateValue(id, 'to', e.target.value)}
           />
         </InputGroup>
