@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Block from './components/Block';
 import Blockchain from './components/Blockchain';
@@ -13,7 +13,7 @@ import TransactionsWallet from './components/BlockchainWithWallet/TransactionsWa
 
 function App() {
   return (
-    <Router basename='/blockchain-intro'>
+    <Router basename={process.env.PUBLIC_URL}>
       <Header />
       <Switch>
         <Route path='/sha256'>
